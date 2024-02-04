@@ -58,6 +58,8 @@ public class UserServiceImpl implements UserService {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User Details with Id: {}" + userId + " not found"));
 		log.info("fetching User Details with Id: {}", userId);
+		user.setMobileNumber(dto.getMobileNumber());
+		user.setUserName(dto.getUserName());
 		User newUser = userRepository.save(user);
 		log.info("User Details updated successfully...");
 		UserDTO userDTO = mapper.map(newUser, UserDTO.class);
