@@ -1,6 +1,9 @@
 package com.gift.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,7 +11,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "gift")
 public class Gift {
@@ -24,62 +33,15 @@ public class Gift {
 	@Column(name = "giftAmount")
 	private int amount;
 
+	@CreationTimestamp
+	@Column(name = "createdOn")
+	private LocalDateTime createdAt;
+
 	@Column(name = "issuedDate")
-	private Date issuedDate;
+	@UpdateTimestamp
+	private LocalDateTime issuedDate;
 
 	@Column(name = "isActive")
 	private boolean isActive;
-
-	public Gift() {
-
-	}
-
-	public Gift(int id, String giftNumber, int amount, Date issuedDate, boolean isActive) {
-		this.id = id;
-		this.giftNumber = giftNumber;
-		this.amount = amount;
-		this.issuedDate = issuedDate;
-		this.isActive = isActive;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getGiftNumber() {
-		return giftNumber;
-	}
-
-	public void setGiftNumber(String giftNumber) {
-		this.giftNumber = giftNumber;
-	}
-
-	public int getAmount() {
-		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-
-	public Date getIssuedDate() {
-		return issuedDate;
-	}
-
-	public void setIssuedDate(Date issuedDate) {
-		this.issuedDate = issuedDate;
-	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
 
 }

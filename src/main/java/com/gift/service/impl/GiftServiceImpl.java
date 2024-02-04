@@ -1,5 +1,6 @@
 package com.gift.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -61,6 +62,11 @@ public class GiftServiceImpl implements GiftService {
 		Gift gift = giftRepo.findById(giftId)
 				.orElseThrow(() -> new ResourceNotFoundException("Gift Card with Id: {}" + giftId + " not found"));
 		log.info("Fetching Gift Details with ID: {}", giftId);
+		gift.setActive(dto.isActive());
+		gift.setAmount(dto.getAmount());
+		gift.setCreatedAt(dto.getCreatedAt());
+		gift.setGiftNumber(dto.getGiftNumber());
+		gift.setIssuedDate(dto.getIssuedDate());
 		Gift newGift = giftRepo.save(gift);
 		log.info("Gift Details with ID: {} Updated Successfully", giftId);
 		GiftDTO giftDTO = mapper.map(newGift, GiftDTO.class);
