@@ -26,5 +26,7 @@ public class GiftDTO {
 	private LocalDateTime issuedDate;
 
 	private boolean isActive;
+	
+	private UserDTO dto;
 
 }
