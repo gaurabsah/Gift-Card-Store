@@ -17,5 +17,7 @@ public class UserDTO {
 
 	@NotEmpty(message = "Mobile Number must not be empty")
 	private long mobileNumber;
+	
+	private GiftDTO dto;
 
 }
